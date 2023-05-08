@@ -9,11 +9,12 @@ fn sysnames {
 sysname=`{sysnames | fm -p}
 if(~ $#sysname 0)
 	exit
-echo Connecting to $sysname
+
 tlsclient tcp!$sysname!24800 barrera &
 
 while(){
 	sleep 1
+	echo Connecting to $sysname...
 	netstat | grep 24800 | grep -s Established || continue
 	echo Ready
 	exit
