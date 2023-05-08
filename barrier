@@ -1,7 +1,20 @@
 #!/bin/rc
 
-sysname=`{ndb/query -a authdom 9front sys | fm -p}
+fn sysnames {
+	for(sys in `{ndb/query -a authdom 9front sys}){
+		netscan $sys 24800 | grep -s open && echo $sys
+	}
+}
+
+sysname=`{sysnames | fm -p}
 if(~ $#sysname 0)
 	exit
+echo Connecting to $sysname
+tlsclient tcp!$sysname!24800 barrera &
 
-tlsclient tcp!$sysname!24800 barrera
+while(){
+	sleep 1
+	netstat | grep 24800 | grep -s Established || continue
+	echo Ready
+	exit
+}
