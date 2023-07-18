@@ -1,0 +1,4 @@
+#!/bin/rc
+
+window 'smenu -p $home walk -f src | plumb -i'
+

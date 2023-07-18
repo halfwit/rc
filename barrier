@@ -1,0 +1,7 @@
+#!/bin/rc
+
+sysname=`{ndb/query -a authdom 9front sys | fm -p}
+if(~ $#sysname 0)
+	exit
+
+tlsclient tcp!$sysname!24800 barrera

@@ -1,0 +1,32 @@
+#!/bin/rc
+rfork e
+
+fn usage {
+	echo Usage: $0 [-r] >[1=2]
+	exit usage
+}
+
+cmd=install
+while(~ $1 -*){
+	switch($1){
+	case -r
+		cmd=uninstall
+		shift
+	}
+	shift
+}
+
+if(! ~ $#* 0)
+	usage
+
+bind -ac /dist/plan9front /
+cd /mnt/back/sys/src/cmd/rio
+switch($cmd){
+case 'install'
+    hget https://ftrv.se/_/9/patches/rio-themes.patch | patch -p5
+    mk install
+case 'uninstall':
+    git/revert .
+    rm -f *.rej *.orig menuhit.c col.h
+    mk install
+}

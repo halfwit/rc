@@ -1,0 +1,9 @@
+#!/bin/rc
+
+selection=`{gcli -i -f  gif $* | fm -p awk '{print $NF}'}
+if(~ $#selection 0){
+	echo No selection >[1=2]
+	exit
+}
+
+plumb $selection

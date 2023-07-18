@@ -1,0 +1,6 @@
+#!/bin/rc
+
+window -r 786 640 1920 1080 'cat $home/lib/theme/light.theme > /mnt/wsys/theme'
+
+# run a system shell on the serial console
+~ $#console 0 || window -scroll console

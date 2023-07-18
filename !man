@@ -1,0 +1,10 @@
+#!/bin/rc
+
+selection=`{lookman $* | fm -p}
+if(~ $#selection 0) {
+	echo No selection >[1=2]
+	exit
+}
+
+echo noscroll > /mnt/wsys/wctl
+echo $selection | rc -i

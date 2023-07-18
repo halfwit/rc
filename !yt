@@ -1,0 +1,7 @@
+#!/bin/rc
+selection=`{ytcli $* | fm -p | awk '{print $NF}' | sed 's/.*watch?v=//'}
+if(~ $#selection 0){
+	exit
+}
+
+nvi -V 18 -v /tmp/video.mp4 $selection && treason /tmp/video.mp4 && rm /tmp/video.mp4

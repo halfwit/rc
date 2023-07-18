@@ -1,0 +1,4 @@
+#!/bin/rc
+
+aux/acpi
+</dev/kbdtap 9hkd -t  >/dev/kbdtap |[3] bar

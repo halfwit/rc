@@ -1,0 +1,8 @@
+#!/bin/rc
+selection=`{wkcli $* | fm -p | awk '{print $NF}'}
+if(~ $#selection 0){
+	echo No link selected >[1=2]
+	exit
+}
+
+plumb $selection

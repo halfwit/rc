@@ -1,0 +1,4 @@
+#!/bin/rc
+rfork en
+
+exec window 'smenu -p /bin walk -f | rc | grep . && rc -i'

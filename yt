@@ -1,0 +1,2 @@
+#!/bin/rc
+nvi -V 18 -v /tmp/video.mp4 $1 && treason /tmp/video.mp4 && rm /tmp/video.mp4

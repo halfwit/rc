@@ -1,0 +1,28 @@
+#!/bin/rc
+rfork en
+
+fn usage {
+	echo "Usage: $0 [-p path] $cmd" >[1=2]
+	exit usage
+}
+
+wdir=()
+while(~ $1 -*){
+	switch($1){
+	case -p
+		wdir=$2
+		shift; shift
+	}
+}
+
+if(~ $#* 0) 
+	usage
+
+if(~ $#wdir 1)
+	cd $wdir
+
+cmd=`{$* | fm -p}
+if(~ $#cmd 0)
+	exit 'no selection'
+
+echo $cmd
